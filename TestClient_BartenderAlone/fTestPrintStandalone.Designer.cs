@@ -199,16 +199,16 @@
 
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnInitial;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtLabel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSNOld;
-        private System.Windows.Forms.ComboBox cmbLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbPrinter;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox lstSNNew;
+        private System.Windows.Forms.Label label1;//Label
+        private System.Windows.Forms.TextBox txtLabel;//""加载的Bartender的LabelFile
+        private System.Windows.Forms.Label label2;//Old SN
+        private System.Windows.Forms.TextBox txtSNOld;//""
+        private System.Windows.Forms.ComboBox cmbLabel;//""
+        private System.Windows.Forms.Label label3;//LabelFile
+        private System.Windows.Forms.Label label5;//Printer
+        private System.Windows.Forms.ComboBox cmbPrinter;//打印机名称
+        private System.Windows.Forms.Label label4;//New SN list
+        private System.Windows.Forms.ListBox lstSNNew;//""
     }
 }
 

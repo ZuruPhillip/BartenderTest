@@ -51,8 +51,7 @@
             this.lstSNNew.ItemHeight = 20;
             this.lstSNNew.Items.AddRange(new object[] {
             "NewSNA001",
-            "NewSNA002",
-            "NewSNA003"});
+            "NewSNA002"});
             this.lstSNNew.Location = new System.Drawing.Point(106, 320);
             this.lstSNNew.Name = "lstSNNew";
             this.lstSNNew.ScrollAlwaysVisible = true;

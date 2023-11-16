@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace BartenderHelper
@@ -58,6 +59,25 @@ namespace BartenderHelper
                 ListPrinter[i] = (PrinterSettings.InstalledPrinters[i].ToString());
             }
             return ListPrinter;
+        }
+
+        /// <summary>
+        /// 获取当前根目录下所有btw文件名称
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetLocalBTWFile()
+        {
+            string path  = Environment.CurrentDirectory;
+            DirectoryInfo di = new DirectoryInfo(path);
+            var files = di.GetFiles("*.btw");
+
+            string[] result = new string[files.Length];
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                result[i] = files[i].Name.ToString();
+            }
+            return result;
         }
     }
 }

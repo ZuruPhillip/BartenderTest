@@ -68,6 +68,7 @@ namespace TestPrintStandalone
             {
                 Log.WriteLogStart();
                 Log.WriteLog("Get Print List");
+                //获取标签字段
                 listLabel = GetListPrintLabel(lstSNNew);
                 if (listLabel.Count<=0)
                 {
@@ -80,9 +81,10 @@ namespace TestPrintStandalone
                 {
                     // Application specific code 
                     // Explicitly start the engine 
+                    //启动引擎
                     btEngine.Start();
 
-                    //定义标签变量，初始化标签模板，指定打印机
+                    //定义标签变量，初始化Bartender标签模板，指定打印机
                     LabelFormatDocument btFormat = btEngine.Documents.Open(sPathTemplet, cmbPrinter.Text);
                     
                     Log.WriteLog("Print Engine Start.");
@@ -107,7 +109,7 @@ namespace TestPrintStandalone
                     {
                         Log.WriteLog("Open Print Label Start.");
 
-                        //Reading Named Substrings ,读取标签字段
+                        //Reading Named Substrings ,依次读取标签字段
                         txtSNOld.Text = btFormat.SubStrings["SERIAL_NUMBER"].Value;
                         btFormat.SubStrings["SERIAL_NUMBER"].Value = listLabel[i];
 
@@ -157,6 +159,7 @@ namespace TestPrintStandalone
                     // Application-specific code 
                     // Assuming the application wants to save changes, 
                     //     it can be easily done at Stop time. 
+                    //关闭引擎
                     btEngine.Stop(SaveOptions.SaveChanges);
 
                     Log.WriteLog("Print Engine Stop OK.");
@@ -173,11 +176,13 @@ namespace TestPrintStandalone
             }
         }
 
+        //Bartender标签文件选取
         private void cmbLabel_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnInitial_Click(sender,e);
         }
 
+        //获取打印的标签列表
         private List<string> GetListPrintLabel(ListBox listbox)
         {
             List<string> list = new List<string> { };

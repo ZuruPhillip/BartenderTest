@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using BartenderHelper;
 
@@ -7,6 +8,7 @@ namespace TestForHelper
 {
     public partial class fTestForHelper : Form
     {
+        //定义打印对象
         BartenderHelper.BartenderHelper Printer = new BartenderHelper.BartenderHelper();
 
         public fTestForHelper()
@@ -30,8 +32,10 @@ namespace TestForHelper
             {
                 cmbLabel.SelectedIndex = 0;
             }
-            
+            //初始化打印机
             cmbPrinter.Items.AddRange(ConfigLoad.GetLocalPrinterList());
+            //初始化标签模板
+            cmbLabel.Items.AddRange(ConfigLoad.GetLocalBTWFile());
         }
 
         /// <summary>
@@ -41,7 +45,7 @@ namespace TestForHelper
         /// <param name="e"></param>
         private void cmbLabel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            cmbLabel.Text = cmbLabel.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -51,7 +55,8 @@ namespace TestForHelper
         /// <param name="e"></param>
         private void cmbPrinter_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            cmbPrinter.Text = cmbPrinter.SelectedItem.ToString();
+            //cmbPrinter.Text = GetDefaultPrinterName();
         }
 
         /// <summary>
@@ -61,8 +66,6 @@ namespace TestForHelper
         /// <param name="e"></param>
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            
-
             try
             {
                 //BartenderHeperUtils.PrintLabel("", "","SERIAL_NUMBER", listSN,2);
@@ -73,7 +76,7 @@ namespace TestForHelper
                     listSubStringValue.Add(new List<string> { lstSNNew.Items[i].ToString() });
                 }
 
-                Printer.PrintStart("","");
+                Printer.PrintStart(cmbLabel.Text, cmbPrinter.Text);
                 Printer.lstSubStringName = listSubStringName;
                 Printer.lstSubStringValue = listSubStringValue;
                 Printer.PrintLabel();
@@ -84,6 +87,17 @@ namespace TestForHelper
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        public string[] GetLocalPrinter()
+        {
+            string[] ListPrinter = new string[PrinterSettings.InstalledPrinters.Count];
+            //获取当前打印机
+            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                ListPrinter[i] = (PrinterSettings.InstalledPrinters[i].ToString());
+            }
+            return ListPrinter;
         }
     }
 }
